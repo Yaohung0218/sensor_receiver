@@ -21,7 +21,6 @@
 #X text 162 128 You can also open/close port here;
 #X text 162 108 It will connect automatically;
 #X text 18 65 sensor data and port;
-#X obj 20 185 sensor-window 101;
 #X text 18 459 You can connect to [sensor-window YOUR-ID] to view the data here., f 67;
 #X text 731 186 Or \, use two route objects to access the data: the first routes by ID \, and the second routes by parameter \, such as acc-z or gyro.;
 #X obj 661 187 route 101;
@@ -30,8 +29,9 @@
 #X text 658 326 see parameter in console;
 #X text 658 420 using route to get number;
 #X text 924 377 quick start;
-#X connect 0 0 21 0;
-#X connect 0 1 24 0;
+#X obj 20 185 sensor-window 100;
+#X connect 0 0 29 0;
+#X connect 0 1 23 0;
 #X connect 1 0 0 0;
 #X connect 3 0 4 0;
 #X connect 4 0 5 0;
@@ -42,5 +42,5 @@
 #X connect 10 0 11 0;
 #X connect 12 0 9 0;
 #X connect 13 0 7 0;
-#X connect 24 0 2 0;
-#X connect 26 0 25 0;
+#X connect 23 0 2 0;
+#X connect 25 0 24 0;
