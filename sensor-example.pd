@@ -16,7 +16,6 @@
 #X obj 21 22 declare -path sensor_receiver;
 #X text 230 22 first declare the path;
 #X text 162 88 type [sensor] in object;
-#X text 464 10 Connect your sensor before opening this patch. If you haven't connected it yet \, quit Pd \, connect your sensor \, and then reopen the patch.;
 #X text 162 128 You can also open/close port here;
 #X text 162 108 It will connect automatically;
 #X text 18 65 sensor data and port;
@@ -32,8 +31,10 @@
 #X obj 743 306 tgl 19 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000 0 1;
 #X obj 20 87 sensor;
 #X obj 20 185 sensor-window 101;
-#X connect 0 0 31 0;
-#X connect 0 1 22 0;
+#X obj 432 19 cnv 19 425 60 empty empty empty 20 12 0 12 #ffc7c6 #ffffff 0;
+#X text 436 25 Connect your sensor before opening this patch. If you haven't connected it yet \, quit Pd \, connect your sensor \, and then reopen the patch.;
+#X connect 0 0 30 0;
+#X connect 0 1 21 0;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
 #X connect 5 0 12 0;
@@ -43,8 +44,8 @@
 #X connect 9 0 10 0;
 #X connect 11 0 8 0;
 #X connect 12 0 6 0;
-#X connect 22 0 1 0;
-#X connect 24 0 28 0;
-#X connect 28 0 23 0;
-#X connect 29 0 28 1;
-#X connect 30 0 0 0;
+#X connect 21 0 1 0;
+#X connect 23 0 27 0;
+#X connect 27 0 22 0;
+#X connect 28 0 27 1;
+#X connect 29 0 0 0;
