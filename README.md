@@ -42,6 +42,20 @@ If `[comport]` is not installed, open **Help → Find externals**, search for `c
 3. Use `[sensor-window YOUR_ID]` to view data from a specific Sensor.
 4. In your own patch, use two `[route]` objects: the first selects the Sensor ID, and the second selects a named parameter such as `acc-z` or `gyro`.
 
+`[sensor_calculate]` also outputs `battery` as a value from `0` to `1`.
+
+`[sensor_command]` converts control messages into a byte list suitable for
+`[comport]`:
+
+```text
+freq ID HZ
+threshold ID G
+```
+
+For example, `freq 101 20` sets Sensor 101 to a maximum of 20 packets per
+second. `threshold 101 0.05` sets its acceleration-change transmission gate
+to 0.05 g.
+
 ## Serial Port
 
 If no data is received, check that `[comport]` inside `sensor.pd` uses the USB Receiver's serial port and a baud rate of `115200`.
@@ -100,6 +114,18 @@ make
 2. 開啟 `sensor-example.pd`，查看使用說明與範例。
 3. 使用 `[sensor-window 你的ID]` 查看對應 Sensor 的數據。
 4. 若要在自己的 patch 中使用數據，可以串接兩個 `[route]`：第一個依 Sensor ID 篩選，第二個依參數名稱篩選，例如 `acc-z` 或 `gyro`。
+
+`[sensor_calculate]` 也會輸出範圍為 `0–1` 的 `battery`。
+
+`[sensor_command]` 會把控制訊息轉成可以送進 `[comport]` 的 byte list：
+
+```text
+freq ID HZ
+threshold ID G
+```
+
+例如 `freq 101 20` 會把 Sensor 101 的最高傳送率設為每秒 20 個封包；
+`threshold 101 0.05` 會把加速度變化傳送門檻設為 0.05 g。
 
 ## Serial Port
 

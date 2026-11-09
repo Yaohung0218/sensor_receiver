@@ -3,7 +3,7 @@
 #include <math.h>
 
 #define SENSOR_VALUE_COUNT 21
-#define SENSOR_OUTPUT_COUNT 8
+#define SENSOR_OUTPUT_COUNT 9
 #define SENSOR_DISPLAY_LIMIT 2.0f
 #define SENSOR_SOFT_KNEE 1.5f
 
@@ -22,7 +22,8 @@ static const char *sensor_output_names[SENSOR_OUTPUT_COUNT] = {
     "gyro-x",
     "gyro-y",
     "gyro-z",
-    "gyro"
+    "gyro",
+    "battery"
 };
 
 static t_float soft_limit_positive(t_float value)
@@ -59,6 +60,7 @@ static void sensor_calculate_values(
     t_float gyro_y;
     t_float gyro_z;
     t_float gyro_magnitude;
+    t_float battery;
     int index;
 
     if (argc != SENSOR_VALUE_COUNT) {
@@ -92,6 +94,12 @@ static void sensor_calculate_values(
     gyro_magnitude = (t_float)sqrt(
         gyro_x * gyro_x + gyro_y * gyro_y + gyro_z * gyro_z);
 
+    battery = atom_getfloat(argv + 1) / 127.0f;
+    if (battery < 0.0f)
+        battery = 0.0f;
+    else if (battery > 1.0f)
+        battery = 1.0f;
+
     sensor_id = atom_getfloat(argv);
     output[0] = soft_limit_axis(acc_x);
     output[1] = soft_limit_axis(acc_y);
@@ -101,6 +109,7 @@ static void sensor_calculate_values(
     output[5] = soft_limit_axis(gyro_y);
     output[6] = soft_limit_axis(gyro_z);
     output[7] = soft_limit_positive(gyro_magnitude);
+    output[8] = battery;
 
     /* One named message per value: sensor <ID> <name> <value>. */
     for (index = 0; index < SENSOR_OUTPUT_COUNT; ++index) {

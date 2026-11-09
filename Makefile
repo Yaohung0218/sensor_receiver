@@ -1,6 +1,6 @@
 lib.name = sensor_receiver
 
-class.sources = sensor_decode.c sensor_calculate.c
+class.sources = sensor_decode.c sensor_calculate.c sensor_command.c
 
 datafiles = sensor.pd
 
